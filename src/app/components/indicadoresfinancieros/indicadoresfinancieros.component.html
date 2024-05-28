@@ -1,0 +1,21 @@
+<div class="complete">
+    <div class="container">
+        <div class="abs-center">
+            <div class="form-group">
+                <div class="topBottom"><h2>INDICADORES FINANCIEROS</h2></div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th *ngFor="let header of headersArray; let i = index">{{header}}</th>
+                    </tr>
+                </thead>             
+                <tbody>
+                    <tr>
+                        <td *ngFor="let serie of finalArregloresponseConverted; let j = index">{{serie}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
