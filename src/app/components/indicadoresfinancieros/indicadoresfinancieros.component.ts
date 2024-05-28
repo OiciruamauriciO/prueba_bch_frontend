@@ -42,14 +42,13 @@ export class IndicadoresfinancierosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.callToEncuestaEstiloEntity(this.fecha);
+    this.callToGetIndicadoresFinancieros(this.fecha);
   }
 
-  async callToEncuestaEstiloEntity(fecha: string) {
+  async callToGetIndicadoresFinancieros(fecha: string) {
     (this.indicadoresFinancierosService.getIndicadoresFinancieros(fecha)).subscribe(async (response) => {
       if(response!=undefined){
         this.allIndicadoresFinancieros = response; 
-
         this.responseConverted = JSON.stringify(this.allIndicadoresFinancieros);  
         const object = JSON.parse(this.responseConverted);
         for (var i in object) {
@@ -66,9 +65,7 @@ export class IndicadoresfinancierosComponent implements OnInit {
             this.finalArregloresponseConverted.push(objectInner[j]);
           } else {
             this.objectSeriesConverted = JSON.stringify(objectInner[j][0]);
-            console.log(this.objectSeriesConverted);
             const objectInnerSerie = JSON.parse(this.objectSeriesConverted);
-            console.log(objectInnerSerie);
             for(var k in objectInnerSerie){
               if(k==="fecha" || k==="valor"){
                 this.finalArregloresponseConverted.push(objectInnerSerie[k]);
@@ -76,15 +73,6 @@ export class IndicadoresfinancierosComponent implements OnInit {
             }
           }      
         }
-
-        console.log("FINAL");
-        console.log(this.finalArregloresponseConverted[0]);
-        console.log(this.finalArregloresponseConverted[1]);
-        console.log(this.finalArregloresponseConverted[2]);
-        console.log(this.finalArregloresponseConverted[3]);
-        console.log(this.finalArregloresponseConverted[4]);
-        console.log(this.finalArregloresponseConverted[5]);
-        console.log(this.finalArregloresponseConverted[6]);
 
       }
     }, (e: any) => {
